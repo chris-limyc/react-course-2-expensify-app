@@ -1,5 +1,6 @@
 import expensesReducers from '../../reducers/expenses'
 import expenses from '../fixtures/expenses'
+import expensesReducer from '../../reducers/expenses'
 
 test('should set default state', () => {
     const state = expensesReducers(undefined, {type: '@@INIT'})
@@ -68,3 +69,12 @@ test('shold not edit an expense', () => {
     expect(state).toEqual(expenses)
     
 })
+
+test('shold set expense', () => {
+    const action  = {
+        type: 'SET_EXPENSES',
+        expenses: [expenses[1]]
+    }   
+    const state = expensesReducer(expenses, action)
+    expect(state).toEqual([expenses[1]])
+})  
